@@ -3,9 +3,7 @@
 
 > *Built for the NASA Space Apps Challenge 2026*
 
-![Svelte 5](https://shields.io)
-![Tailwind CSS](https://shields.io)
-![NASA Open Data](https://shields.io)
+`Svelte 5 Runes` • `Tailwind CSS` • `NASA DONKI API` • `Gemini 2.5 Flash`
 
 ---
 
