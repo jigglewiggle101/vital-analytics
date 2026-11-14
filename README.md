@@ -1,9 +1,9 @@
 # A.R.E.S. Health Monitor
 **Autonomous Real-time Evaluation & Support // Deep Space Medical Triage System**
 
-> *Built for the NASA Space Apps Challenge 2026*
+> *Built for the NASA Space Apps Challenge Singapore 2026*
 
-`Svelte 5 Runes` • `Tailwind CSS` • `NASA DONKI API` • `Gemini 2.5 Flash`
+`Svelte 5 Runes` • `Vite` • `Tailwind CSS` • `NASA DONKI API` • `Gemini 2.5 Flash`
 
 ---
 
@@ -13,6 +13,22 @@ During deep-space transit to Mars, communication latency between spacecraft and 
 **A.R.E.S. Health Monitor** is a lightweight, offline-capable onboard medical triage console designed for resource-constrained deep-space avionics. It combines live NASA space-weather telemetry, orbital light-time calculations, interactive clinical screening, and hybrid edge/cloud AI to unlock pre-authorized countermeasures when Earth communication is delayed.
 
 ---
+
+## System Architecture
+
+<img width="896" height="1200" alt="A.R.E.S. System Architecture" src="https://github.com/user-attachments/assets/0ba39bb8-360e-4150-9d2c-96e40cb0f04d" />
+
+* **Stage 1: Multi-Source Data Ingestion**
+  * Combines external space telemetry (**NASA DONKI API** for Solar Energetic Particle storms, **Orbital Ephemeris** for Earth–Mars distance/light-time, and **NASA HRP / CSA** clinical thresholds) with onboard crew assessments (**vitals sliders** and the **7×7 Amsler Grid**).
+* **Stage 2: Svelte 5 Runes Reactive Core**
+  * Uses fine-grained reactivity (`$state`, `$derived`, `$effect`) inside `healthEngine.js` to evaluate physiological risks instantaneously without Virtual DOM overhead—mirroring low-power, radiation-tolerant spacecraft avionics.
+* **Stage 3: Autonomous Decision & Hybrid AI Layer**
+  * Automatically unlocks **Autonomous Mode** when One-Way Light Time (OWLT) exceeds 3 minutes. Pair-routes clinical triage through **Google Gemini 2.5 Flash** when connected, with a **0ms deterministic offline edge engine** fallback so medical guidance never fails during comms blackouts.
+* **Stage 4: Actionable Directives & Downlink**
+  * Renders priority-ranked countermeasures (e.g., water-wall storm shelter, lower-body thigh cuffs, EVA locks) and compiles structured `SYS.LOG` telemetry packets queued for Deep Space Network transmission.
+
+---
+
 
 ## Key Features
 * **Live Space Radiation Monitoring (NASA DONKI API):** Queries Solar Energetic Particle (`SEP`) events in real time to automatically trigger radiation storm alerts and water-wall shelter directives.
