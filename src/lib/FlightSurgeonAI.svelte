@@ -110,10 +110,12 @@
 
     const telemetryContext = `Astronaut Telemetry: Sleep=${sleepHours}h, Reaction=${reactionTimeMs}ms, Symptoms=${symptoms.join(",") || "none"}, SANS=${visionDistortion}, SEP_Storm=${Boolean(radiationEvent)}, Comms=${commsMode} (${marsTelemetry.formatted} delay).`;
 
-    if (GEMINI_KEY) {
+  if (GEMINI_KEY) {
       try {
+        const host = "https://generativelanguage.googleapis.com";
+        const path = "/v1beta/models/gemini-2.5-flash:generateContent";
         const res = await fetch(
-          `https://googleapis.com{GEMINI_KEY}`,
+          `${host}${path}?key=${GEMINI_KEY}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -127,14 +129,14 @@
           }
         );
         const data = await res.json();
-        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        const reply = data?.candidates?.at(0)?.content?.parts?.at(0)?.text;
         if (reply) {
           messages = [...messages, { role: "ai", text: reply.trim() }];
           isThinking = false;
           return;
         }
-      } catch {
-        // Fallback to onboard edge engine
+      } catch (err) {
+        console.warn("Gemini API fallback:", err);
       }
     }
 
