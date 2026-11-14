@@ -113,7 +113,7 @@
   if (GEMINI_KEY) {
       try {
         const host = "https://generativelanguage.googleapis.com";
-        const path = "/v1beta/models/gemini-2.5-flash:generateContent";
+        const path = "/v1beta/models/gemini-3.1-flash-lite:generateContent";
         const res = await fetch(
           `${host}${path}?key=${GEMINI_KEY}`,
           {
